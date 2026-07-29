@@ -21,44 +21,52 @@ import Foundation
 import GoogleCloudWkt
 import GoogleIAMV1
 import GoogleCloudGax
+import struct Logging.Logger
 
 extension Clients {
-  final class IAMRetry: IAMStub {
+  final class IAMLogging: IAMStub {
     let inner: any IAMStub
-    let options: GoogleCloudGax.ClientOptions
+    let logger: Logger
 
-    public init(_ inner: any IAMStub, options: GoogleCloudGax.ClientOptions) {
+    public init(_ inner: any IAMStub, logger: Logger) {
+      var logger = logger
+      logger[metadataKey: "gcp.artifact.id"] = "google-iam-admin-v1"
+      logger[metadataKey: "gcp.client.service"] = "iam"
+      logger[metadataKey: "gcp.experimental.swift.client"] = "IAM"
       self.inner = inner
-      self.options = options
+      self.logger = logger
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      idempotent: Swift.Bool,
+      name: Swift.String,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      let loop = GoogleCloudGax._RetryLoop(
-        options: options, withDefault: self.options, idempotent: idempotent,
-      )
-      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
-        var attemptOptions = options
-        attemptOptions.attemptTimeout = attemptTimeout
-        return try await action(request, attemptOptions)
+      var logger = logger
+      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
+      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
+      logger.debug("enter  : \(request) \(options)")
+      do {
+        let output = try await action(request, options)
+        logger.debug("success: \(request) \(options) \(output)")
+        return output
+      } catch let error {
+        logger.debug("error  : \(request) \(options) \(error)")
+        throw error
       }
-      return try await loop.run(attempt: attempt)
     }
 
     public func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse {
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listServiceAccounts",
         action: {
           (r: ListServiceAccountsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ListServiceAccountsResponse
+            -> GoogleIAMAdminV1.ListServiceAccountsResponse
           in
           return try await self.inner.listServiceAccounts(request: r, options: o)
         })
@@ -66,14 +74,14 @@ extension Clients {
 
     public func getServiceAccount(
       request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getServiceAccount",
         action: {
           (r: GetServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccount
+            -> GoogleIAMAdminV1.ServiceAccount
           in
           return try await self.inner.getServiceAccount(request: r, options: o)
         })
@@ -81,14 +89,14 @@ extension Clients {
 
     public func createServiceAccount(
       request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createServiceAccount",
         action: {
           (r: CreateServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccount
+            -> GoogleIAMAdminV1.ServiceAccount
           in
           return try await self.inner.createServiceAccount(request: r, options: o)
         })
@@ -96,14 +104,14 @@ extension Clients {
 
     public func updateServiceAccount(
       request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "updateServiceAccount",
         action: {
           (r: ServiceAccount, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccount
+            -> GoogleIAMAdminV1.ServiceAccount
           in
           return try await self.inner.updateServiceAccount(request: r, options: o)
         })
@@ -111,14 +119,14 @@ extension Clients {
 
     public func patchServiceAccount(
       request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "patchServiceAccount",
         action: {
           (r: PatchServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccount
+            -> GoogleIAMAdminV1.ServiceAccount
           in
           return try await self.inner.patchServiceAccount(request: r, options: o)
         })
@@ -130,7 +138,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteServiceAccount",
         action: {
           (r: DeleteServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
           return try await self.inner.deleteServiceAccount(request: r, options: o)
@@ -139,14 +147,14 @@ extension Clients {
 
     public func undeleteServiceAccount(
       request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse {
+    ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "undeleteServiceAccount",
         action: {
           (r: UndeleteServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.UndeleteServiceAccountResponse
+            -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
           in
           return try await self.inner.undeleteServiceAccount(request: r, options: o)
         })
@@ -158,7 +166,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "enableServiceAccount",
         action: {
           (r: EnableServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
           return try await self.inner.enableServiceAccount(request: r, options: o)
@@ -171,7 +179,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "disableServiceAccount",
         action: {
           (r: DisableServiceAccountRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void
           in
@@ -181,14 +189,14 @@ extension Clients {
 
     public func listServiceAccountKeys(
       request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse {
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listServiceAccountKeys",
         action: {
           (r: ListServiceAccountKeysRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+            -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
           in
           return try await self.inner.listServiceAccountKeys(request: r, options: o)
         })
@@ -196,14 +204,14 @@ extension Clients {
 
     public func getServiceAccountKey(
       request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getServiceAccountKey",
         action: {
           (r: GetServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccountKey
+            -> GoogleIAMAdminV1.ServiceAccountKey
           in
           return try await self.inner.getServiceAccountKey(request: r, options: o)
         })
@@ -211,14 +219,14 @@ extension Clients {
 
     public func createServiceAccountKey(
       request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createServiceAccountKey",
         action: {
           (r: CreateServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccountKey
+            -> GoogleIAMAdminV1.ServiceAccountKey
           in
           return try await self.inner.createServiceAccountKey(request: r, options: o)
         })
@@ -226,14 +234,14 @@ extension Clients {
 
     public func uploadServiceAccountKey(
       request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "uploadServiceAccountKey",
         action: {
           (r: UploadServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ServiceAccountKey
+            -> GoogleIAMAdminV1.ServiceAccountKey
           in
           return try await self.inner.uploadServiceAccountKey(request: r, options: o)
         })
@@ -245,7 +253,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteServiceAccountKey",
         action: {
           (r: DeleteServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void
           in
@@ -259,7 +267,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "disableServiceAccountKey",
         action: {
           (r: DisableServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> Void in
@@ -273,7 +281,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "enableServiceAccountKey",
         action: {
           (r: EnableServiceAccountKeyRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void
           in
@@ -283,14 +291,14 @@ extension Clients {
 
     public func signBlob(
       request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignBlobResponse {
+    ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "signBlob",
         action: {
           (r: SignBlobRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.SignBlobResponse
+            -> GoogleIAMAdminV1.SignBlobResponse
           in
           return try await self.inner.signBlob(request: r, options: o)
         })
@@ -298,14 +306,14 @@ extension Clients {
 
     public func signJwt(
       request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignJwtResponse {
+    ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "signJwt",
         action: {
           (r: SignJwtRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.SignJwtResponse
+            -> GoogleIAMAdminV1.SignJwtResponse
           in
           return try await self.inner.signJwt(request: r, options: o)
         })
@@ -317,7 +325,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "getIamPolicy",
         action: {
           (r: GoogleIAMV1.GetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIAMV1.Policy
@@ -332,7 +340,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "setIamPolicy",
         action: {
           (r: GoogleIAMV1.SetIamPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIAMV1.Policy
@@ -347,7 +355,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "testIamPermissions",
         action: {
           (r: GoogleIAMV1.TestIamPermissionsRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleIAMV1.TestIamPermissionsResponse
@@ -358,14 +366,14 @@ extension Clients {
 
     public func queryGrantableRoles(
       request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "queryGrantableRoles",
         action: {
           (r: QueryGrantableRolesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.QueryGrantableRolesResponse
+            -> GoogleIAMAdminV1.QueryGrantableRolesResponse
           in
           return try await self.inner.queryGrantableRoles(request: r, options: o)
         })
@@ -373,14 +381,14 @@ extension Clients {
 
     public func listRoles(
       request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListRolesResponse {
+    ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listRoles",
         action: {
           (r: ListRolesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.ListRolesResponse
+            -> GoogleIAMAdminV1.ListRolesResponse
           in
           return try await self.inner.listRoles(request: r, options: o)
         })
@@ -388,14 +396,14 @@ extension Clients {
 
     public func getRole(
       request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getRole",
         action: {
           (r: GetRoleRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.Role
+            -> GoogleIAMAdminV1.Role
           in
           return try await self.inner.getRole(request: r, options: o)
         })
@@ -403,14 +411,14 @@ extension Clients {
 
     public func createRole(
       request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createRole",
         action: {
           (r: CreateRoleRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.Role
+            -> GoogleIAMAdminV1.Role
           in
           return try await self.inner.createRole(request: r, options: o)
         })
@@ -418,14 +426,14 @@ extension Clients {
 
     public func updateRole(
       request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "updateRole",
         action: {
           (r: UpdateRoleRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.Role
+            -> GoogleIAMAdminV1.Role
           in
           return try await self.inner.updateRole(request: r, options: o)
         })
@@ -433,14 +441,14 @@ extension Clients {
 
     public func deleteRole(
       request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteRole",
         action: {
           (r: DeleteRoleRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.Role
+            -> GoogleIAMAdminV1.Role
           in
           return try await self.inner.deleteRole(request: r, options: o)
         })
@@ -448,14 +456,14 @@ extension Clients {
 
     public func undeleteRole(
       request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "undeleteRole",
         action: {
           (r: UndeleteRoleRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.Role
+            -> GoogleIAMAdminV1.Role
           in
           return try await self.inner.undeleteRole(request: r, options: o)
         })
@@ -463,14 +471,14 @@ extension Clients {
 
     public func queryTestablePermissions(
       request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "queryTestablePermissions",
         action: {
           (r: QueryTestablePermissionsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.QueryTestablePermissionsResponse
+            -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
           in
           return try await self.inner.queryTestablePermissions(request: r, options: o)
         })
@@ -478,14 +486,14 @@ extension Clients {
 
     public func queryAuditableServices(
       request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "queryAuditableServices",
         action: {
           (r: QueryAuditableServicesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.QueryAuditableServicesResponse
+            -> GoogleIAMAdminV1.QueryAuditableServicesResponse
           in
           return try await self.inner.queryAuditableServices(request: r, options: o)
         })
@@ -493,14 +501,14 @@ extension Clients {
 
     public func lintPolicy(
       request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.LintPolicyResponse {
+    ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "lintPolicy",
         action: {
           (r: LintPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleIamAdminV1.LintPolicyResponse
+            -> GoogleIAMAdminV1.LintPolicyResponse
           in
           return try await self.inner.lintPolicy(request: r, options: o)
         })

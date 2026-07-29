@@ -26,23 +26,23 @@ extension Clients {
   protocol IAMStub {
     func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse
 
     func getServiceAccount(
       request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     func createServiceAccount(
       request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     func updateServiceAccount(
       request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     func patchServiceAccount(
       request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     func deleteServiceAccount(
       request: DeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
@@ -50,7 +50,7 @@ extension Clients {
 
     func undeleteServiceAccount(
       request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse
+    ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
 
     func enableServiceAccount(
       request: EnableServiceAccountRequest, options: GoogleCloudGax.RequestOptions
@@ -62,19 +62,19 @@ extension Clients {
 
     func listServiceAccountKeys(
       request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
 
     func getServiceAccountKey(
       request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     func createServiceAccountKey(
       request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     func uploadServiceAccountKey(
       request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     func deleteServiceAccountKey(
       request: DeleteServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
@@ -90,11 +90,11 @@ extension Clients {
 
     func signBlob(
       request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignBlobResponse
+    ) async throws -> GoogleIAMAdminV1.SignBlobResponse
 
     func signJwt(
       request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignJwtResponse
+    ) async throws -> GoogleIAMAdminV1.SignJwtResponse
 
     func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
@@ -110,43 +110,43 @@ extension Clients {
 
     func queryGrantableRoles(
       request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse
+    ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse
 
     func listRoles(
       request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListRolesResponse
+    ) async throws -> GoogleIAMAdminV1.ListRolesResponse
 
     func getRole(
       request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     func createRole(
       request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     func updateRole(
       request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     func deleteRole(
       request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     func undeleteRole(
       request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     func queryTestablePermissions(
       request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse
+    ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
 
     func queryAuditableServices(
       request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse
+    ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse
 
     func lintPolicy(
       request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.LintPolicyResponse
+    ) async throws -> GoogleIAMAdminV1.LintPolicyResponse
   }
 
   class IAMTransport: IAMStub {
@@ -159,7 +159,7 @@ extension Clients {
 
     public func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse {
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -177,12 +177,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ListServiceAccountsResponse.self, from: data)
+        GoogleIAMAdminV1.ListServiceAccountsResponse.self, from: data)
     }
 
     public func getServiceAccount(
       request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -197,12 +197,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccount.self, from: data)
+        GoogleIAMAdminV1.ServiceAccount.self, from: data)
     }
 
     public func createServiceAccount(
       request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -219,12 +219,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccount.self, from: data)
+        GoogleIAMAdminV1.ServiceAccount.self, from: data)
     }
 
     public func updateServiceAccount(
       request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -241,12 +241,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccount.self, from: data)
+        GoogleIAMAdminV1.ServiceAccount.self, from: data)
     }
 
     public func patchServiceAccount(
       request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.serviceAccount.map({ $0.name }), !pathVariable0.isEmpty
         else {
@@ -265,7 +265,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccount.self, from: data)
+        GoogleIAMAdminV1.ServiceAccount.self, from: data)
     }
 
     public func deleteServiceAccount(
@@ -288,7 +288,7 @@ extension Clients {
 
     public func undeleteServiceAccount(
       request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse {
+    ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -305,7 +305,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.UndeleteServiceAccountResponse.self, from: data)
+        GoogleIAMAdminV1.UndeleteServiceAccountResponse.self, from: data)
     }
 
     public func enableServiceAccount(
@@ -350,7 +350,7 @@ extension Clients {
 
     public func listServiceAccountKeys(
       request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse {
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -367,12 +367,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ListServiceAccountKeysResponse.self, from: data)
+        GoogleIAMAdminV1.ListServiceAccountKeysResponse.self, from: data)
     }
 
     public func getServiceAccountKey(
       request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -389,12 +389,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccountKey.self, from: data)
+        GoogleIAMAdminV1.ServiceAccountKey.self, from: data)
     }
 
     public func createServiceAccountKey(
       request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -411,12 +411,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccountKey.self, from: data)
+        GoogleIAMAdminV1.ServiceAccountKey.self, from: data)
     }
 
     public func uploadServiceAccountKey(
       request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -433,7 +433,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ServiceAccountKey.self, from: data)
+        GoogleIAMAdminV1.ServiceAccountKey.self, from: data)
     }
 
     public func deleteServiceAccountKey(
@@ -496,7 +496,7 @@ extension Clients {
 
     public func signBlob(
       request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignBlobResponse {
+    ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -513,12 +513,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.SignBlobResponse.self, from: data)
+        GoogleIAMAdminV1.SignBlobResponse.self, from: data)
     }
 
     public func signJwt(
       request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignJwtResponse {
+    ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -535,7 +535,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.SignJwtResponse.self, from: data)
+        GoogleIAMAdminV1.SignJwtResponse.self, from: data)
     }
 
     public func getIamPolicy(
@@ -606,7 +606,7 @@ extension Clients {
 
     public func queryGrantableRoles(
       request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/roles:queryGrantableRoles"
       }()
@@ -620,12 +620,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.QueryGrantableRolesResponse.self, from: data)
+        GoogleIAMAdminV1.QueryGrantableRolesResponse.self, from: data)
     }
 
     public func listRoles(
       request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListRolesResponse {
+    ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/roles"
       }()
@@ -643,12 +643,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.ListRolesResponse.self, from: data)
+        GoogleIAMAdminV1.ListRolesResponse.self, from: data)
     }
 
     public func getRole(
       request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -663,12 +663,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.Role.self, from: data)
+        GoogleIAMAdminV1.Role.self, from: data)
     }
 
     public func createRole(
       request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -685,12 +685,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.Role.self, from: data)
+        GoogleIAMAdminV1.Role.self, from: data)
     }
 
     public func updateRole(
       request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -711,12 +711,12 @@ extension Clients {
       }
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.Role.self, from: data)
+        GoogleIAMAdminV1.Role.self, from: data)
     }
 
     public func deleteRole(
       request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -733,12 +733,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.Role.self, from: data)
+        GoogleIAMAdminV1.Role.self, from: data)
     }
 
     public func undeleteRole(
       request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role {
+    ) async throws -> GoogleIAMAdminV1.Role {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -755,12 +755,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.Role.self, from: data)
+        GoogleIAMAdminV1.Role.self, from: data)
     }
 
     public func queryTestablePermissions(
       request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/permissions:queryTestablePermissions"
       }()
@@ -774,12 +774,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.QueryTestablePermissionsResponse.self, from: data)
+        GoogleIAMAdminV1.QueryTestablePermissionsResponse.self, from: data)
     }
 
     public func queryAuditableServices(
       request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse {
+    ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/iamPolicies:queryAuditableServices"
       }()
@@ -793,12 +793,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.QueryAuditableServicesResponse.self, from: data)
+        GoogleIAMAdminV1.QueryAuditableServicesResponse.self, from: data)
     }
 
     public func lintPolicy(
       request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.LintPolicyResponse {
+    ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {
       let path = try { () throws -> Swift.String in
         return "/v1/iamPolicies:lintPolicy"
       }()
@@ -812,7 +812,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleIamAdminV1.LintPolicyResponse.self, from: data)
+        GoogleIAMAdminV1.LintPolicyResponse.self, from: data)
     }
   }
 }

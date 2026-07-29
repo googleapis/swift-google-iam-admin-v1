@@ -73,7 +73,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_ListServiceAccounts")
   public func listServiceAccounts(
     request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse {
+  ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
     try await self.inner.listServiceAccounts(request: request, options: options)
   }
 
@@ -86,7 +86,7 @@ public class IAMClient: Clients.IAMProtocol {
     byItem: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<ServiceAccount, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listServiceAccounts(request: request, options: options)
@@ -101,7 +101,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_GetServiceAccount")
   public func getServiceAccount(
     request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     try await self.inner.getServiceAccount(request: request, options: options)
   }
 
@@ -112,7 +112,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_CreateServiceAccount")
   public func createServiceAccount(
     request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     try await self.inner.createServiceAccount(request: request, options: options)
   }
 
@@ -129,7 +129,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_UpdateServiceAccount")
   public func updateServiceAccount(
     request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     try await self.inner.updateServiceAccount(request: request, options: options)
   }
 
@@ -140,7 +140,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_PatchServiceAccount")
   public func patchServiceAccount(
     request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     try await self.inner.patchServiceAccount(request: request, options: options)
   }
 
@@ -184,7 +184,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_UndeleteServiceAccount")
   public func undeleteServiceAccount(
     request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse {
+  ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
     try await self.inner.undeleteServiceAccount(request: request, options: options)
   }
 
@@ -242,7 +242,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_ListServiceAccountKeys")
   public func listServiceAccountKeys(
     request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse {
+  ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
     try await self.inner.listServiceAccountKeys(request: request, options: options)
   }
 
@@ -253,7 +253,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_GetServiceAccountKey")
   public func getServiceAccountKey(
     request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     try await self.inner.getServiceAccountKey(request: request, options: options)
   }
 
@@ -264,7 +264,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_CreateServiceAccountKey")
   public func createServiceAccountKey(
     request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     try await self.inner.createServiceAccountKey(request: request, options: options)
   }
 
@@ -279,7 +279,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_UploadServiceAccountKey")
   public func uploadServiceAccountKey(
     request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     try await self.inner.uploadServiceAccountKey(request: request, options: options)
   }
 
@@ -335,7 +335,7 @@ public class IAMClient: Clients.IAMProtocol {
   @available(*, deprecated)
   public func signBlob(
     request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.SignBlobResponse {
+  ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     try await self.inner.signBlob(request: request, options: options)
   }
 
@@ -355,7 +355,7 @@ public class IAMClient: Clients.IAMProtocol {
   @available(*, deprecated)
   public func signJwt(
     request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.SignJwtResponse {
+  ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     try await self.inner.signJwt(request: request, options: options)
   }
 
@@ -427,7 +427,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_QueryGrantableRoles")
   public func queryGrantableRoles(
     request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
     try await self.inner.queryGrantableRoles(request: request, options: options)
   }
 
@@ -440,7 +440,7 @@ public class IAMClient: Clients.IAMProtocol {
     byItem: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Role, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.queryGrantableRoles(request: request, options: options)
@@ -456,7 +456,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_ListRoles")
   public func listRoles(
     request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListRolesResponse {
+  ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
     try await self.inner.listRoles(request: request, options: options)
   }
 
@@ -469,7 +469,7 @@ public class IAMClient: Clients.IAMProtocol {
   public func listRoles(
     byItem: ListRolesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Role, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIamAdminV1.ListRolesResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleIAMAdminV1.ListRolesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listRoles(request: request, options: options)
@@ -484,7 +484,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_GetRole")
   public func getRole(
     request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     try await self.inner.getRole(request: request, options: options)
   }
 
@@ -495,7 +495,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_CreateRole")
   public func createRole(
     request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     try await self.inner.createRole(request: request, options: options)
   }
 
@@ -506,7 +506,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_UpdateRole")
   public func updateRole(
     request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     try await self.inner.updateRole(request: request, options: options)
   }
 
@@ -535,7 +535,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_DeleteRole")
   public func deleteRole(
     request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     try await self.inner.deleteRole(request: request, options: options)
   }
 
@@ -546,7 +546,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_UndeleteRole")
   public func undeleteRole(
     request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     try await self.inner.undeleteRole(request: request, options: options)
   }
 
@@ -557,7 +557,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_QueryTestablePermissions")
   public func queryTestablePermissions(
     request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
     try await self.inner.queryTestablePermissions(request: request, options: options)
   }
 
@@ -570,7 +570,7 @@ public class IAMClient: Clients.IAMProtocol {
     byItem: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Permission, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.queryTestablePermissions(request: request, options: options)
@@ -587,7 +587,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_QueryAuditableServices")
   public func queryAuditableServices(
     request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
     try await self.inner.queryAuditableServices(request: request, options: options)
   }
 
@@ -603,7 +603,7 @@ public class IAMClient: Clients.IAMProtocol {
   /// @Snippet(path: "IAM_LintPolicy")
   public func lintPolicy(
     request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.LintPolicyResponse {
+  ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {
     try await self.inner.lintPolicy(request: request, options: options)
   }
 }
@@ -617,7 +617,7 @@ extension Clients {
   public protocol IAMProtocol {
     /// See `IAMClient.listServiceAccounts`.
     func listServiceAccounts(request: ListServiceAccountsRequest) async throws
-      -> GoogleIamAdminV1.ListServiceAccountsResponse
+      -> GoogleIAMAdminV1.ListServiceAccountsResponse
 
     /// See `IAMClient.listServiceAccounts`.
     func listServiceAccounts(
@@ -631,31 +631,31 @@ extension Clients {
 
     /// See `IAMClient.getServiceAccount`.
     func getServiceAccount(request: GetServiceAccountRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccount
+      -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.getServiceAccount`.
     func getServiceAccount(
       name: Swift.String,
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.createServiceAccount`.
     func createServiceAccount(request: CreateServiceAccountRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccount
+      -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.createServiceAccount`.
     func createServiceAccount(
       name: Swift.String,
       accountId: Swift.String,
       serviceAccount: ServiceAccount?,
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.updateServiceAccount`.
     func updateServiceAccount(request: ServiceAccount) async throws
-      -> GoogleIamAdminV1.ServiceAccount
+      -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.patchServiceAccount`.
     func patchServiceAccount(request: PatchServiceAccountRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccount
+      -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.deleteServiceAccount`.
     func deleteServiceAccount(request: DeleteServiceAccountRequest) async throws
@@ -667,7 +667,7 @@ extension Clients {
 
     /// See `IAMClient.undeleteServiceAccount`.
     func undeleteServiceAccount(request: UndeleteServiceAccountRequest) async throws
-      -> GoogleIamAdminV1.UndeleteServiceAccountResponse
+      -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
 
     /// See `IAMClient.enableServiceAccount`.
     func enableServiceAccount(request: EnableServiceAccountRequest) async throws
@@ -677,38 +677,38 @@ extension Clients {
 
     /// See `IAMClient.listServiceAccountKeys`.
     func listServiceAccountKeys(request: ListServiceAccountKeysRequest) async throws
-      -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+      -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
 
     /// See `IAMClient.listServiceAccountKeys`.
     func listServiceAccountKeys(
       name: Swift.String,
       keyTypes: [ListServiceAccountKeysRequest.KeyType],
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
 
     /// See `IAMClient.getServiceAccountKey`.
     func getServiceAccountKey(request: GetServiceAccountKeyRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccountKey
+      -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.getServiceAccountKey`.
     func getServiceAccountKey(
       name: Swift.String,
       publicKeyType: ServiceAccountPublicKeyType,
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.createServiceAccountKey`.
     func createServiceAccountKey(request: CreateServiceAccountKeyRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccountKey
+      -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.createServiceAccountKey`.
     func createServiceAccountKey(
       name: Swift.String,
       privateKeyType: ServiceAccountPrivateKeyType,
       keyAlgorithm: ServiceAccountKeyAlgorithm,
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.uploadServiceAccountKey`.
     func uploadServiceAccountKey(request: UploadServiceAccountKeyRequest) async throws
-      -> GoogleIamAdminV1.ServiceAccountKey
+      -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.deleteServiceAccountKey`.
     func deleteServiceAccountKey(request: DeleteServiceAccountKeyRequest) async throws
@@ -736,25 +736,25 @@ extension Clients {
 
     /// See `IAMClient.signBlob`.
     @available(*, deprecated)
-    func signBlob(request: SignBlobRequest) async throws -> GoogleIamAdminV1.SignBlobResponse
+    func signBlob(request: SignBlobRequest) async throws -> GoogleIAMAdminV1.SignBlobResponse
 
     /// See `IAMClient.signBlob`.
     @available(*, deprecated)
     func signBlob(
       name: Swift.String,
       bytesToSign: Foundation.Data,
-    ) async throws -> GoogleIamAdminV1.SignBlobResponse
+    ) async throws -> GoogleIAMAdminV1.SignBlobResponse
 
     /// See `IAMClient.signJwt`.
     @available(*, deprecated)
-    func signJwt(request: SignJwtRequest) async throws -> GoogleIamAdminV1.SignJwtResponse
+    func signJwt(request: SignJwtRequest) async throws -> GoogleIAMAdminV1.SignJwtResponse
 
     /// See `IAMClient.signJwt`.
     @available(*, deprecated)
     func signJwt(
       name: Swift.String,
       payload: Swift.String,
-    ) async throws -> GoogleIamAdminV1.SignJwtResponse
+    ) async throws -> GoogleIAMAdminV1.SignJwtResponse
 
     /// See `IAMClient.getIamPolicy`.
     func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
@@ -785,7 +785,7 @@ extension Clients {
 
     /// See `IAMClient.queryGrantableRoles`.
     func queryGrantableRoles(request: QueryGrantableRolesRequest) async throws
-      -> GoogleIamAdminV1.QueryGrantableRolesResponse
+      -> GoogleIAMAdminV1.QueryGrantableRolesResponse
 
     /// See `IAMClient.queryGrantableRoles`.
     func queryGrantableRoles(
@@ -798,7 +798,7 @@ extension Clients {
     ) throws -> any AsyncSequence<Role, Swift.Error>
 
     /// See `IAMClient.listRoles`.
-    func listRoles(request: ListRolesRequest) async throws -> GoogleIamAdminV1.ListRolesResponse
+    func listRoles(request: ListRolesRequest) async throws -> GoogleIAMAdminV1.ListRolesResponse
 
     /// See `IAMClient.listRoles`.
     func listRoles(
@@ -806,23 +806,23 @@ extension Clients {
     ) throws -> any AsyncSequence<Role, Swift.Error>
 
     /// See `IAMClient.getRole`.
-    func getRole(request: GetRoleRequest) async throws -> GoogleIamAdminV1.Role
+    func getRole(request: GetRoleRequest) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.createRole`.
-    func createRole(request: CreateRoleRequest) async throws -> GoogleIamAdminV1.Role
+    func createRole(request: CreateRoleRequest) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.updateRole`.
-    func updateRole(request: UpdateRoleRequest) async throws -> GoogleIamAdminV1.Role
+    func updateRole(request: UpdateRoleRequest) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.deleteRole`.
-    func deleteRole(request: DeleteRoleRequest) async throws -> GoogleIamAdminV1.Role
+    func deleteRole(request: DeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.undeleteRole`.
-    func undeleteRole(request: UndeleteRoleRequest) async throws -> GoogleIamAdminV1.Role
+    func undeleteRole(request: UndeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.queryTestablePermissions`.
     func queryTestablePermissions(request: QueryTestablePermissionsRequest) async throws
-      -> GoogleIamAdminV1.QueryTestablePermissionsResponse
+      -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
 
     /// See `IAMClient.queryTestablePermissions`.
     func queryTestablePermissions(
@@ -831,15 +831,15 @@ extension Clients {
 
     /// See `IAMClient.queryAuditableServices`.
     func queryAuditableServices(request: QueryAuditableServicesRequest) async throws
-      -> GoogleIamAdminV1.QueryAuditableServicesResponse
+      -> GoogleIAMAdminV1.QueryAuditableServicesResponse
 
     /// See `IAMClient.lintPolicy`.
-    func lintPolicy(request: LintPolicyRequest) async throws -> GoogleIamAdminV1.LintPolicyResponse
+    func lintPolicy(request: LintPolicyRequest) async throws -> GoogleIAMAdminV1.LintPolicyResponse
 
     /// See `IAMClient.listServiceAccounts`.
     func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse
 
     /// See `IAMClient.listServiceAccounts`.
     func listServiceAccounts(
@@ -849,22 +849,22 @@ extension Clients {
     /// See `IAMClient.getServiceAccount`.
     func getServiceAccount(
       request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.createServiceAccount`.
     func createServiceAccount(
       request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.updateServiceAccount`.
     func updateServiceAccount(
       request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.patchServiceAccount`.
     func patchServiceAccount(
       request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccount
+    ) async throws -> GoogleIAMAdminV1.ServiceAccount
 
     /// See `IAMClient.deleteServiceAccount`.
     func deleteServiceAccount(
@@ -874,7 +874,7 @@ extension Clients {
     /// See `IAMClient.undeleteServiceAccount`.
     func undeleteServiceAccount(
       request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse
+    ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
 
     /// See `IAMClient.enableServiceAccount`.
     func enableServiceAccount(
@@ -889,22 +889,22 @@ extension Clients {
     /// See `IAMClient.listServiceAccountKeys`.
     func listServiceAccountKeys(
       request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+    ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
 
     /// See `IAMClient.getServiceAccountKey`.
     func getServiceAccountKey(
       request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.createServiceAccountKey`.
     func createServiceAccountKey(
       request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.uploadServiceAccountKey`.
     func uploadServiceAccountKey(
       request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ServiceAccountKey
+    ) async throws -> GoogleIAMAdminV1.ServiceAccountKey
 
     /// See `IAMClient.deleteServiceAccountKey`.
     func deleteServiceAccountKey(
@@ -925,13 +925,13 @@ extension Clients {
     @available(*, deprecated)
     func signBlob(
       request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignBlobResponse
+    ) async throws -> GoogleIAMAdminV1.SignBlobResponse
 
     /// See `IAMClient.signJwt`.
     @available(*, deprecated)
     func signJwt(
       request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.SignJwtResponse
+    ) async throws -> GoogleIAMAdminV1.SignJwtResponse
 
     /// See `IAMClient.getIamPolicy`.
     func getIamPolicy(
@@ -951,7 +951,7 @@ extension Clients {
     /// See `IAMClient.queryGrantableRoles`.
     func queryGrantableRoles(
       request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse
+    ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse
 
     /// See `IAMClient.queryGrantableRoles`.
     func queryGrantableRoles(
@@ -961,7 +961,7 @@ extension Clients {
     /// See `IAMClient.listRoles`.
     func listRoles(
       request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.ListRolesResponse
+    ) async throws -> GoogleIAMAdminV1.ListRolesResponse
 
     /// See `IAMClient.listRoles`.
     func listRoles(
@@ -971,32 +971,32 @@ extension Clients {
     /// See `IAMClient.getRole`.
     func getRole(
       request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.createRole`.
     func createRole(
       request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.updateRole`.
     func updateRole(
       request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.deleteRole`.
     func deleteRole(
       request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.undeleteRole`.
     func undeleteRole(
       request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.Role
+    ) async throws -> GoogleIAMAdminV1.Role
 
     /// See `IAMClient.queryTestablePermissions`.
     func queryTestablePermissions(
       request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse
+    ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
 
     /// See `IAMClient.queryTestablePermissions`.
     func queryTestablePermissions(
@@ -1006,26 +1006,26 @@ extension Clients {
     /// See `IAMClient.queryAuditableServices`.
     func queryAuditableServices(
       request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse
+    ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse
 
     /// See `IAMClient.lintPolicy`.
     func lintPolicy(
       request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleIamAdminV1.LintPolicyResponse
+    ) async throws -> GoogleIAMAdminV1.LintPolicyResponse
   }
 }
 
 // Default implementations
 extension Clients.IAMProtocol {
   public func listServiceAccounts(request: ListServiceAccountsRequest) async throws
-    -> GoogleIamAdminV1.ListServiceAccountsResponse
+    -> GoogleIAMAdminV1.ListServiceAccountsResponse
   {
     try await self.listServiceAccounts(request: request, options: .init())
   }
 
   public func listServiceAccounts(
     request: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse {
+  ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1039,7 +1039,7 @@ extension Clients.IAMProtocol {
     byItem: ListServiceAccountsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<ServiceAccount, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.ListServiceAccountsResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1055,20 +1055,20 @@ extension Clients.IAMProtocol {
   }
 
   public func getServiceAccount(request: GetServiceAccountRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccount
+    -> GoogleIAMAdminV1.ServiceAccount
   {
     try await self.getServiceAccount(request: request, options: .init())
   }
 
   public func getServiceAccount(
     request: GetServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getServiceAccount(
     name: Swift.String,
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     let request = GetServiceAccountRequest().with {
       $0.name = name
     }
@@ -1076,14 +1076,14 @@ extension Clients.IAMProtocol {
   }
 
   public func createServiceAccount(request: CreateServiceAccountRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccount
+    -> GoogleIAMAdminV1.ServiceAccount
   {
     try await self.createServiceAccount(request: request, options: .init())
   }
 
   public func createServiceAccount(
     request: CreateServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1091,7 +1091,7 @@ extension Clients.IAMProtocol {
     name: Swift.String,
     accountId: Swift.String,
     serviceAccount: ServiceAccount?,
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     let request = CreateServiceAccountRequest().with {
       $0.name = name
       $0.accountId = accountId
@@ -1101,26 +1101,26 @@ extension Clients.IAMProtocol {
   }
 
   public func updateServiceAccount(request: ServiceAccount) async throws
-    -> GoogleIamAdminV1.ServiceAccount
+    -> GoogleIAMAdminV1.ServiceAccount
   {
     try await self.updateServiceAccount(request: request, options: .init())
   }
 
   public func updateServiceAccount(
     request: ServiceAccount, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func patchServiceAccount(request: PatchServiceAccountRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccount
+    -> GoogleIAMAdminV1.ServiceAccount
   {
     try await self.patchServiceAccount(request: request, options: .init())
   }
 
   public func patchServiceAccount(
     request: PatchServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccount {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccount {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1144,14 +1144,14 @@ extension Clients.IAMProtocol {
   }
 
   public func undeleteServiceAccount(request: UndeleteServiceAccountRequest) async throws
-    -> GoogleIamAdminV1.UndeleteServiceAccountResponse
+    -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
   {
     try await self.undeleteServiceAccount(request: request, options: .init())
   }
 
   public func undeleteServiceAccount(
     request: UndeleteServiceAccountRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.UndeleteServiceAccountResponse {
+  ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1176,21 +1176,21 @@ extension Clients.IAMProtocol {
   }
 
   public func listServiceAccountKeys(request: ListServiceAccountKeysRequest) async throws
-    -> GoogleIamAdminV1.ListServiceAccountKeysResponse
+    -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
   {
     try await self.listServiceAccountKeys(request: request, options: .init())
   }
 
   public func listServiceAccountKeys(
     request: ListServiceAccountKeysRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse {
+  ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func listServiceAccountKeys(
     name: Swift.String,
     keyTypes: [ListServiceAccountKeysRequest.KeyType],
-  ) async throws -> GoogleIamAdminV1.ListServiceAccountKeysResponse {
+  ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
     let request = ListServiceAccountKeysRequest().with {
       $0.name = name
       $0.keyTypes = keyTypes
@@ -1199,21 +1199,21 @@ extension Clients.IAMProtocol {
   }
 
   public func getServiceAccountKey(request: GetServiceAccountKeyRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccountKey
+    -> GoogleIAMAdminV1.ServiceAccountKey
   {
     try await self.getServiceAccountKey(request: request, options: .init())
   }
 
   public func getServiceAccountKey(
     request: GetServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getServiceAccountKey(
     name: Swift.String,
     publicKeyType: ServiceAccountPublicKeyType,
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     let request = GetServiceAccountKeyRequest().with {
       $0.name = name
       $0.publicKeyType = publicKeyType
@@ -1222,14 +1222,14 @@ extension Clients.IAMProtocol {
   }
 
   public func createServiceAccountKey(request: CreateServiceAccountKeyRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccountKey
+    -> GoogleIAMAdminV1.ServiceAccountKey
   {
     try await self.createServiceAccountKey(request: request, options: .init())
   }
 
   public func createServiceAccountKey(
     request: CreateServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1237,7 +1237,7 @@ extension Clients.IAMProtocol {
     name: Swift.String,
     privateKeyType: ServiceAccountPrivateKeyType,
     keyAlgorithm: ServiceAccountKeyAlgorithm,
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     let request = CreateServiceAccountKeyRequest().with {
       $0.name = name
       $0.privateKeyType = privateKeyType
@@ -1247,14 +1247,14 @@ extension Clients.IAMProtocol {
   }
 
   public func uploadServiceAccountKey(request: UploadServiceAccountKeyRequest) async throws
-    -> GoogleIamAdminV1.ServiceAccountKey
+    -> GoogleIAMAdminV1.ServiceAccountKey
   {
     try await self.uploadServiceAccountKey(request: request, options: .init())
   }
 
   public func uploadServiceAccountKey(
     request: UploadServiceAccountKeyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ServiceAccountKey {
+  ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1315,20 +1315,20 @@ extension Clients.IAMProtocol {
     try await self.enableServiceAccountKey(request: request)
   }
 
-  public func signBlob(request: SignBlobRequest) async throws -> GoogleIamAdminV1.SignBlobResponse {
+  public func signBlob(request: SignBlobRequest) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     try await self.signBlob(request: request, options: .init())
   }
 
   public func signBlob(
     request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.SignBlobResponse {
+  ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func signBlob(
     name: Swift.String,
     bytesToSign: Foundation.Data,
-  ) async throws -> GoogleIamAdminV1.SignBlobResponse {
+  ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     let request = SignBlobRequest().with {
       $0.name = name
       $0.bytesToSign = bytesToSign
@@ -1336,20 +1336,20 @@ extension Clients.IAMProtocol {
     return try await self.signBlob(request: request)
   }
 
-  public func signJwt(request: SignJwtRequest) async throws -> GoogleIamAdminV1.SignJwtResponse {
+  public func signJwt(request: SignJwtRequest) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     try await self.signJwt(request: request, options: .init())
   }
 
   public func signJwt(
     request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.SignJwtResponse {
+  ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func signJwt(
     name: Swift.String,
     payload: Swift.String,
-  ) async throws -> GoogleIamAdminV1.SignJwtResponse {
+  ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     let request = SignJwtRequest().with {
       $0.name = name
       $0.payload = payload
@@ -1425,14 +1425,14 @@ extension Clients.IAMProtocol {
   }
 
   public func queryGrantableRoles(request: QueryGrantableRolesRequest) async throws
-    -> GoogleIamAdminV1.QueryGrantableRolesResponse
+    -> GoogleIAMAdminV1.QueryGrantableRolesResponse
   {
     try await self.queryGrantableRoles(request: request, options: .init())
   }
 
   public func queryGrantableRoles(
     request: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1446,7 +1446,7 @@ extension Clients.IAMProtocol {
     byItem: QueryGrantableRolesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Role, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.QueryGrantableRolesResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1462,14 +1462,14 @@ extension Clients.IAMProtocol {
   }
 
   public func listRoles(request: ListRolesRequest) async throws
-    -> GoogleIamAdminV1.ListRolesResponse
+    -> GoogleIAMAdminV1.ListRolesResponse
   {
     try await self.listRoles(request: request, options: .init())
   }
 
   public func listRoles(
     request: ListRolesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.ListRolesResponse {
+  ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1482,71 +1482,71 @@ extension Clients.IAMProtocol {
   public func listRoles(
     byItem: ListRolesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Role, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIamAdminV1.ListRolesResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleIAMAdminV1.ListRolesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
-  public func getRole(request: GetRoleRequest) async throws -> GoogleIamAdminV1.Role {
+  public func getRole(request: GetRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.getRole(request: request, options: .init())
   }
 
   public func getRole(
     request: GetRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func createRole(request: CreateRoleRequest) async throws -> GoogleIamAdminV1.Role {
+  public func createRole(request: CreateRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.createRole(request: request, options: .init())
   }
 
   public func createRole(
     request: CreateRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func updateRole(request: UpdateRoleRequest) async throws -> GoogleIamAdminV1.Role {
+  public func updateRole(request: UpdateRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.updateRole(request: request, options: .init())
   }
 
   public func updateRole(
     request: UpdateRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func deleteRole(request: DeleteRoleRequest) async throws -> GoogleIamAdminV1.Role {
+  public func deleteRole(request: DeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.deleteRole(request: request, options: .init())
   }
 
   public func deleteRole(
     request: DeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
-  public func undeleteRole(request: UndeleteRoleRequest) async throws -> GoogleIamAdminV1.Role {
+  public func undeleteRole(request: UndeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.undeleteRole(request: request, options: .init())
   }
 
   public func undeleteRole(
     request: UndeleteRoleRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.Role {
+  ) async throws -> GoogleIAMAdminV1.Role {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func queryTestablePermissions(request: QueryTestablePermissionsRequest) async throws
-    -> GoogleIamAdminV1.QueryTestablePermissionsResponse
+    -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
   {
     try await self.queryTestablePermissions(request: request, options: .init())
   }
 
   public func queryTestablePermissions(
     request: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1560,33 +1560,33 @@ extension Clients.IAMProtocol {
     byItem: QueryTestablePermissionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Permission, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIamAdminV1.QueryTestablePermissionsResponse in
+      (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
   public func queryAuditableServices(request: QueryAuditableServicesRequest) async throws
-    -> GoogleIamAdminV1.QueryAuditableServicesResponse
+    -> GoogleIAMAdminV1.QueryAuditableServicesResponse
   {
     try await self.queryAuditableServices(request: request, options: .init())
   }
 
   public func queryAuditableServices(
     request: QueryAuditableServicesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.QueryAuditableServicesResponse {
+  ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func lintPolicy(request: LintPolicyRequest) async throws
-    -> GoogleIamAdminV1.LintPolicyResponse
+    -> GoogleIAMAdminV1.LintPolicyResponse
   {
     try await self.lintPolicy(request: request, options: .init())
   }
 
   public func lintPolicy(
     request: LintPolicyRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleIamAdminV1.LintPolicyResponse {
+  ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 }
