@@ -27,8 +27,8 @@ let package = Package(
     .package(path: "../../packages/auth"),
     .package(path: "../../packages/gax"),
     .package(path: "../../packages/wkt"),
-    .package(path: "../../generated/google-iam-v1"),
-    .package(path: "../../generated/google-type"),
+    .package(path: "../../generated/swift-google-iam-v1"),
+    .package(path: "../../generated/swift-google-type"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -38,8 +38,8 @@ let package = Package(
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWKT", package: "wkt"),
-        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
-        .product(name: "GoogleType", package: "google-type"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleType", package: "swift-google-type"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )
